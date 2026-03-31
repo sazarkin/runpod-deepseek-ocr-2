@@ -1,6 +1,6 @@
 {
   "input": {
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/640px-Camponotus_flavomarginatus_ant.jpg",
+    "image": "https://dummyimage.com/300x300/5733ff/fff&text=forza%20ferrari",
     "prompt": "document",
     "base_size": 1024,
     "image_size": 768,
