@@ -39,33 +39,69 @@ On error:
 
 ## Prompts
 
-| Shorthand | Full prompt | Use case |
-|---|---|---|
-| `document` | `<image>\n<|grounding|>Convert the document to markdown. ` | Documents with layouts, tables, formulas |
-| `ocr` | `<image>\nFree OCR. ` | Plain text extraction without layout |
+| Shorthand | Use case |
+|---|---|
+| `document` | Documents with layouts, tables, formulas — output is Markdown |
+| `ocr` | Plain text extraction without layout |
+
+Full prompts used internally:
+
+```
+document → <image>\n<|grounding|>Convert the document to markdown. 
+ocr      → <image>\nFree OCR. 
+```
 
 You can also pass any custom prompt string in the `prompt` field.
 
 ---
 
-## Example Request
+## Example Requests
+
+### Python (recommended)
+
+```python
+import runpod
+import base64
+
+client = runpod.api.RunPodClient(api_key="YOUR_API_KEY")
+
+# --- Image from URL ---
+response = client.run_sync(
+    endpoint_id="YOUR_ENDPOINT_ID",
+    job_input={"image": "https://example.com/invoice.png", "prompt": "document"},
+)
+print(response["output"]["result"])
+
+# --- Image from file (base64) ---
+with open("scan.jpg", "rb") as f:
+    img_b64 = base64.b64encode(f.read()).decode()
+
+response = client.run_sync(
+    endpoint_id="YOUR_ENDPOINT_ID",
+    job_input={"image": img_b64, "prompt": "document"},
+)
+print(response["output"]["result"])
+
+# --- PDF from file (base64) — one result per page ---
+with open("document.pdf", "rb") as f:
+    pdf_b64 = base64.b64encode(f.read()).decode()
+
+response = client.run_sync(
+    endpoint_id="YOUR_ENDPOINT_ID",
+    job_input={"image": pdf_b64, "prompt": "document"},
+)
+for i, page_text in enumerate(response["output"]["pages"], 1):
+    print(f"--- Page {i} ---\n{page_text}")
+```
+
+### JSON (RunPod Playground / curl)
 
 ```json
-{
-  "input": {
-    "image": "https://example.com/invoice.png",
-    "prompt": "document"
-  }
-}
+{ "input": { "image": "https://example.com/invoice.png", "prompt": "document" } }
 ```
 
 ```json
-{
-  "input": {
-    "image": "https://example.com/document.pdf",
-    "prompt": "document"
-  }
-}
+{ "input": { "image": "<base64-encoded PDF>", "prompt": "document" } }
 ```
 
 ---
