@@ -4,8 +4,8 @@ runpod~=1.7.9
 
 # DeepSeek-OCR-2 dependencies (mirrors upstream requirements.txt)
 torch==2.6.0
-transformers==4.46.3
-tokenizers==0.20.3
+transformers==4.48.0
+tokenizers==0.21.4
 einops
 addict
 easydict
