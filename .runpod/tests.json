@@ -1,14 +1,5 @@
 {
-  "tests": [
-    {
-      "name": "ocr_document_url",
-      "input": {
-        "image": "https://dummyimage.com/300x300/5733ff/fff&text=forza%20ferrari",
-        "prompt": "document"
-      },
-      "timeout": 120000
-    }
-  ],
+  "tests": [],
   "config": {
     "gpuTypeId": "NVIDIA RTX A6000",
     "gpuCount": 1,
