@@ -1,5 +1,10 @@
 {
   "input": {
-    "name": "John Doe"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/640px-Camponotus_flavomarginatus_ant.jpg",
+    "prompt": "document",
+    "base_size": 1024,
+    "image_size": 768,
+    "crop_mode": true
   }
 }
+

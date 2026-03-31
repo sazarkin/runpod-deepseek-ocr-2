@@ -1,13 +1,13 @@
 {
-  "title": "Worker Template",
-  "description": "A starting point for creating your own custom serverless worker. It provides a basic structure and configuration that you can build upon.",
+  "title": "DeepSeek-OCR-2",
+  "description": "Serverless OCR worker powered by DeepSeek-OCR-2. Converts images and documents to text or Markdown using a 7B vision-language model.",
   "type": "serverless",
-  "category": "language",
-  "iconUrl": "https://dummyimage.com/100x100/5733ff/fff&text=SW",
+  "category": "vision",
+  "iconUrl": "https://dummyimage.com/100x100/5733ff/fff&text=OCR",
   "config": {
     "runsOn": "GPU",
-    "containerDiskInGb": 5,
-    "gpuIds": "ADA_24",
+    "containerDiskInGb": 50,
+    "gpuIds": "ADA_24,ADA_48,ADA_80",
     "gpuCount": 1,
     "allowedCudaVersions": [
       "12.7",
@@ -16,7 +16,8 @@
       "12.4",
       "12.3",
       "12.2",
-      "12.1"
+      "12.1",
+      "11.8"
     ]
   }
 }
