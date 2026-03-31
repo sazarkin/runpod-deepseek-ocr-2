@@ -4,8 +4,8 @@ runpod~=1.7.9
 hf_transfer
 
 # DeepSeek-OCR-2 dependencies (mirrors upstream requirements.txt)
-torch==2.6.0
-torchvision
+# NOTE: torch==2.6.0 and torchvision==0.21.0 are installed separately in the
+# Dockerfile from the cu118 index to match the CUDA 11.8 base image.
 transformers==4.48.0
 tokenizers==0.21.4
 einops

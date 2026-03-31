@@ -4,7 +4,10 @@ FROM runpod/base:0.6.3-cuda11.8.0
 RUN ln -sf $(which python3.11) /usr/local/bin/python && \
     ln -sf $(which python3.11) /usr/local/bin/python3
 
-# Install dependencies
+# Install CUDA 11.8-compatible PyTorch wheels first (must come from the cu118 index)
+RUN uv pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cu118 --no-cache-dir --system
+
+# Install remaining dependencies from PyPI
 COPY requirements.txt /requirements.txt
 RUN uv pip install --upgrade -r /requirements.txt --no-cache-dir --system
 
@@ -18,7 +21,7 @@ RUN uv pip install flash-attn==2.7.3 --no-build-isolation --no-cache-dir --syste
 # RUN python -c "import os; from transformers import AutoModel, AutoTokenizer; n=os.environ.get('MODEL_NAME','deepseek-ai/DeepSeek-OCR-2'); AutoTokenizer.from_pretrained(n, trust_remote_code=True); AutoModel.from_pretrained(n, trust_remote_code=True, use_safetensors=True)"
 
 # Add handler
-ADD handler.py .
+COPY handler.py .
 
 # Run the handler
 CMD python -u /handler.py
