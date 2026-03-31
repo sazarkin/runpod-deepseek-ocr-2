@@ -1,15 +1,25 @@
 {
   "tests": [
     {
-      "name": "basic_test",
+      "name": "ocr_document_url",
       "input": {
-        "name": "John Doe"
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/640px-Camponotus_flavomarginatus_ant.jpg",
+        "prompt": "document"
       },
-      "timeout": 10000
+      "timeout": 120000
+    },
+    {
+      "name": "free_ocr_url",
+      "input": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/640px-Camponotus_flavomarginatus_ant.jpg",
+        "prompt": "ocr",
+        "crop_mode": false
+      },
+      "timeout": 120000
     }
   ],
   "config": {
-    "gpuTypeId": "NVIDIA GeForce RTX 4090",
+    "gpuTypeId": "NVIDIA RTX A6000",
     "gpuCount": 1,
     "allowedCudaVersions": [
       "12.7",
@@ -18,7 +28,9 @@
       "12.4",
       "12.3",
       "12.2",
-      "12.1"
+      "12.1",
+      "11.8"
     ]
   }
 }
+
