@@ -68,6 +68,10 @@ def _image_extension(data: bytes) -> str:
     if data[:4] == b"RIFF" and data[8:12] == b"WEBP":
         return ".webp"
     return ".png"  # safe fallback – Pillow and the model accept PNG for unknowns
+
+
+def _is_pdf(data: bytes) -> bool:
+    """Return True if the raw bytes look like a PDF."""
     return data[:4] == b"%PDF"
 
 

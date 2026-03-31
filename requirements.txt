@@ -1,6 +1,7 @@
 # Required Python packages
 
 runpod~=1.7.9
+hf_transfer
 
 # DeepSeek-OCR-2 dependencies (mirrors upstream requirements.txt)
 torch==2.6.0
