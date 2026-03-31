@@ -12,10 +12,10 @@ RUN uv pip install --upgrade -r /requirements.txt --no-cache-dir --system
 RUN uv pip install flash-attn==2.7.3 --no-build-isolation --no-cache-dir --system
 
 # Optional: pre-download the model into the image to avoid cold-start latency.
-# Uncomment the two lines below and set MODEL_NAME to the HuggingFace model ID
-# or local path. Leave commented to download at container start-up instead.
+# Uncomment and set --build-arg MODEL_NAME=... when building:
+#   docker build --build-arg MODEL_NAME=deepseek-ai/DeepSeek-OCR-2 .
 # ARG MODEL_NAME=deepseek-ai/DeepSeek-OCR-2
-# RUN python -c "from transformers import AutoModel, AutoTokenizer; AutoTokenizer.from_pretrained('${MODEL_NAME}', trust_remote_code=True); AutoModel.from_pretrained('${MODEL_NAME}', trust_remote_code=True, use_safetensors=True)"
+# RUN python -c "import os; from transformers import AutoModel, AutoTokenizer; n=os.environ.get('MODEL_NAME','deepseek-ai/DeepSeek-OCR-2'); AutoTokenizer.from_pretrained(n, trust_remote_code=True); AutoModel.from_pretrained(n, trust_remote_code=True, use_safetensors=True)"
 
 # Add handler
 ADD handler.py .

@@ -11,7 +11,7 @@ The model converts document images to Markdown or plain text using a 7 B vision-
 
 | Field | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `image` | string | ✅ | — | Public image URL **or** base64-encoded image (optionally with a `data:image/…;base64,` prefix) |
+| `image` | string | ✅ | — | Public image/PDF URL **or** base64-encoded image or PDF (optionally with a `data:…;base64,` prefix) |
 | `prompt` | string | | `"document"` | Shorthand `"document"` (Markdown output) or `"ocr"` (plain text), or a raw prompt string |
 | `base_size` | int | | `1024` | Base tile size for the encoder |
 | `image_size` | int | | `768` | Resolution of each crop tile |
@@ -21,6 +21,12 @@ The model converts document images to Markdown or plain text using a 7 B vision-
 
 ```json
 { "result": "<extracted text or markdown>" }
+```
+
+For PDF input, one result per page is returned:
+
+```json
+{ "pages": ["<page 1 text>", "<page 2 text>", "…"] }
 ```
 
 On error:
@@ -56,9 +62,8 @@ You can also pass any custom prompt string in the `prompt` field.
 ```json
 {
   "input": {
-    "image": "<base64-encoded-image>",
-    "prompt": "ocr",
-    "crop_mode": false
+    "image": "https://example.com/document.pdf",
+    "prompt": "document"
   }
 }
 ```
