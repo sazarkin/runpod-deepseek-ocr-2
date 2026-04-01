@@ -195,7 +195,7 @@ def _run_ocr(image_path: str, prompt: str, base_size: int, image_size: int, crop
         base_size=base_size,
         image_size=image_size,
         crop_mode=crop_mode,
-        save_results=False,
+        eval_mode=True,
     )
 
 
