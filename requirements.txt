@@ -7,7 +7,7 @@ hf_transfer
 # NOTE: torch==2.6.0 and torchvision==0.21.0 are installed separately in the
 # Dockerfile from the cu118 index to match the CUDA 11.8 base image.
 transformers==4.46.3
-tokenizers==0.21.4
+tokenizers>=0.20,<0.21
 einops
 addict
 easydict
