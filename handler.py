@@ -12,6 +12,14 @@ import torch
 from PIL import Image
 from transformers import AutoModel, AutoTokenizer
 
+# Compatibility shim: transformers ≥4.46 removed LlamaFlashAttention2, but the
+# model's bundled modeling_deepseekv2.py still imports it unconditionally at
+# module level. Alias it to LlamaAttention so the import succeeds; the actual
+# attention implementation is still governed by _attn_implementation below.
+import transformers.models.llama.modeling_llama as _llama_mod
+if not hasattr(_llama_mod, "LlamaFlashAttention2"):
+    _llama_mod.LlamaFlashAttention2 = _llama_mod.LlamaAttention
+
 # ---------------------------------------------------------------------------
 # Cached-model configuration.
 # RunPod caches Hugging Face models at HF_CACHE_ROOT when a model ID is set
